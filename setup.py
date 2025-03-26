@@ -7,7 +7,7 @@ setup(name='pyuhmegle',
       version='1.07',
       description='Python API for Uhmegle webchat',
       long_description='Python API for Uhmegle webchat. \
-                        Usage: https://github.com/elias94/pyuhmegle',
+                        Usage: https://github.com/holdentheplanet/pyuhmegle',
       author='Holden Moore',
       author_email='holdenchristianmoore@gmail.com',
       url='https://github.com/holdentheplanet',
