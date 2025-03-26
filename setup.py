@@ -3,16 +3,16 @@ try:
 except ImportError:
     from distutils.core import setup
 
-setup(name='pyomegle',
+setup(name='pyuhmegle',
       version='1.07',
-      description='Python API for Omegle webchat',
-      long_description='Python API for Omegle webchat. \
-                        Usage: https://github.com/elias94/pyomegle',
-      author='Elia Scotto',
-      author_email='eliascotto94@gmail.com',
-      url='https://github.com/elias94/pyomegle',
+      description='Python API for Uhmegle webchat',
+      long_description='Python API for Uhmegle webchat. \
+                        Usage: https://github.com/elias94/pyuhmegle',
+      author='Holden Moore',
+      author_email='holdenchristianmoore@gmail.com',
+      url='https://github.com/holdentheplanet',
       license='MIT',
-      packages=[ 'pyomegle' ],
+      packages=[ 'pyuhmegle' ],
       install_requires=[ 'mechanize' ],
       classifiers=[
         'Development Status :: 5 - Production/Stable',
