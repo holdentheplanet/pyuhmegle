@@ -54,8 +54,8 @@ class EventThread(threading.Thread):
         self._stop.set()
 
 
-class Omegle(object):
-    SERVER_LIST = [f'front{n}.omegle.com' for n in range(1, 33)]
+class Uhmegle(object):
+    SERVER_LIST = [f'front{n}.uhmegle.com' for n in range(1, 33)]
 
     STATUS_URL =            'http://%s/status?nocache=%s&randid=%s'
     START_URL =             'http://%s/start?caps=recaptcha2,t3&firstevents=%s&spid=%s&randid=%s&cc=%s&lang=%s'
@@ -66,7 +66,7 @@ class Omegle(object):
     DISCONNECT_URL =        'http://%s/disconnect'
     SEND_URL =              'http://%s/send'
 
-    CHECK_URL = [f'http://waw{n}.omegle.com/check' for n in range(1, 4)]
+    CHECK_URL = [f'http://waw{n}.uhmegle.com/check' for n in range(1, 4)]
 
     def __init__(self, events_handler, firstevents=1, spid='', random_id=None, topics=[], lang='en', event_delay=3):
         self.events_handler = events_handler
@@ -255,8 +255,8 @@ class Omegle(object):
             return False
 
 
-class OmegleHandler(object):
-    """ Abstract class for defining Omegle event handlers """
+class UhmegleHandler(object):
+    """ Abstract class for defining Uhmegle event handlers """
 
     RECAPTCHA_CHALLENGE_URL = 'http://www.google.com/recaptcha/api/challenge?k=%s'
     RECAPTCHA_IMAGE_URL = 'http://www.google.com/recaptcha/api/image?c=%s'
@@ -265,9 +265,9 @@ class OmegleHandler(object):
     def __init__(self, loop=False):
         self.loop = loop
     
-    def _setup(self, omegle):
-        """ Called by the Omegle class for initial additional settings """
-        self.omegle = omegle
+    def _setup(self, uhmegle):
+        """ Called by the Uhmegle class for initial additional settings """
+        self.uhmegle = uhmegle
     
     def waiting(self):
         """ Called when we are waiting for a stranger to connect """
@@ -298,7 +298,7 @@ class OmegleHandler(object):
         print ('Stranger has disconnected.')
 
         if self.loop:   # new session
-            self.omegle.start()
+            self.uhmegle.start()
     
     def captcha_required(self):
         """ Called when the server asks for captcha """
@@ -310,7 +310,7 @@ class OmegleHandler(object):
         print ('Recaptcha required: %s' % url)
         response = raw_input('Response: ')
 
-        self.omegle.recaptcha(challenge, response)
+        self.uhmegle.recaptcha(challenge, response)
 
     def captcha_rejected(self):
         """ Called when server reject captcha """
@@ -329,11 +329,11 @@ class OmegleHandler(object):
         pass
 
 
-class OmegleClient(Omegle):
+class UhmegleClient(Uhmegle):
 
     def __init__(self, events_handler, wpm=42,
                 firstevents=1, spid='', random_id=None, topics=[], lang='en', event_delay=3):
-        super(OmegleClient, self).__init__(
+        super(UhmegleClient, self).__init__(
             events_handler, firstevents, spid,
             random_id, topics, lang, event_delay)
         self.wpm = wpm
@@ -353,12 +353,12 @@ class OmegleClient(Omegle):
 
     def typing(self):
         """ Emulates typing in the conversation """
-        super(OmegleClient, self).typing()
+        super(UhmegleClient, self).typing()
         print ('You currently typing...')
 
     def send(self, message):
         """ Sends a message """
-        super(OmegleClient, self).send(message)
+        super(UhmegleClient, self).send(message)
         print ('You: %s' % message)
 
     def next(self):
